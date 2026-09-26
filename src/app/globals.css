@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-portfolio-bg: #111112;
+  --color-portfolio-sidebar: #171719;
+  --color-portfolio-surface: #18181a;
+  --color-portfolio-raised: #202023;
+  --color-portfolio-line: #29292c;
+  --color-portfolio-fg: #f4f4f5;
+  --color-portfolio-dim: #a1a1a6;
+  --color-portfolio-muted: #77777e;
+  --color-portfolio-blue: #2bbcf1;
+  --font-sans: var(--font-geist-sans), Arial, sans-serif;
+}
+
+.skill-card{
+  display: block;
+}
+
+.skill-card:hover {
+  @apply opacity-100 will-change-transform origin-[50%_100%_0px];
+  transform: translateZ(2px) rotateX(-30deg);
+  transform-style: preserve-3d;
+}

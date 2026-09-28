@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Mrs_Saint_Delafield} from "next/font/google";
+
+const mrsSaintDelafield = Mrs_Saint_Delafield({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-mrs-saint-delafield",
+  display: "swap",
+});
 
 const geistSans = localFont({
   src: "./fonts/geist-latin.woff2",
@@ -17,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={geistSans.variable}>
+    <html lang="en" className={`${geistSans.variable} ${mrsSaintDelafield.variable}`}>
       <body className="m-0 min-h-screen">{children}</body>
     </html>
   );

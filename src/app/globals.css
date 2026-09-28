@@ -11,6 +11,7 @@
   --color-portfolio-muted: #77777e;
   --color-portfolio-blue: #2bbcf1;
   --font-sans: var(--font-geist-sans), Arial, sans-serif;
+  --font-signature: var(--font-mrs-saint-delafield), cursive;
 }
 
 .skill-card{

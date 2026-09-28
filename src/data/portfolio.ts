@@ -58,7 +58,7 @@ export const projects: Project[] = [
     link: "https://useonboard360.vercel.app",
   },
   {
-    id: "chowbuddy",
+    id: "cbuddy",
     name: "ChowBuddy",
     type: "Independent project · Mobile app",
     description:

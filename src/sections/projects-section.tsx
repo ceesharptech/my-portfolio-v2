@@ -16,7 +16,7 @@ export function ProjectsSection() {
         A selection of projects I’ve worked on, from client work to personal
         experiments.
       </SectionIntro>
-      <div className="grid gap-14 max-[760px]:gap-9.5">
+      <div className="grid gap-14 max-[760px]:gap-14">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}

@@ -85,6 +85,7 @@ export default function Portfolio() {
           onToggleTheme={toggleTheme}
         />
         <main className="ml-0 flex min-h-screen justify-center min-[1100px]:ml-[270px] min-[1101px]:ml-[clamp(280px,19vw,366px)]">
+
           <div className="w-[calc(100%-128px)] max-w-[1000px] max-[760px]:w-[calc(100%-38px)] max-[760px]:max-w-[520px] max-[390px]:w-[calc(100%-36px)]">
             <IntroSection />
             <ProjectsSection />

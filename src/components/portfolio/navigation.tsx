@@ -11,6 +11,16 @@ import { navigation, socialLinks } from "@/data/portfolio";
 import { press3dClasses } from "./shared/press-3d";
 import { usePortfolioTheme, type Theme } from "./theme";
 
+function scrollToSection(sectionId: string) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  window.history.pushState(null, "", `#${sectionId}`);
+  const topOffset = window.matchMedia("(max-width: 1099px)").matches ? 84 : 24;
+  const top = section.getBoundingClientRect().top + window.scrollY - topOffset;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
 type ThemeSwitchProps = {
   theme: Theme;
   onToggle: () => void;
@@ -126,6 +136,10 @@ export function DesktopSidebar({
               href={`#${item.id}`}
               key={item.id}
               aria-current={activeSection === item.id ? "location" : undefined}
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToSection(item.id);
+              }}
             >
               {item.label}
             </a>
@@ -176,8 +190,8 @@ export function MobileNavigation({
           onClick={onToggleOpen}
         >
           <div className="w-full h-full flex flex-col gap-1.5 justify-center items-center">
-              <div className={`w-full h-[1.5px] ${light ? "bg-portfolio-line" : "bg-[#b9b9b9]"} rounded-full transition-all duration-300 ${open ? "rotate-45 translate-y-[3.2px]" : "rotate-0"}`}></div>
-              <div className={`w-full h-[1.5px] ${light ? "bg-portfolio-line" : "bg-[#b9b9b9]"} rounded-full  transition-all duration-300 ${open ? "-rotate-45 -translate-y-[3.2px]" : "-rotate-0"}`}></div>
+              <div className={`w-full h-[1.5px] ${light ? "bg-portfolio-line" : "bg-[#b9b9b9]"} rounded-full transition-all duration-300 ${open ? "rotate-45 translate-y-[3.3px]" : "rotate-0"}`}></div>
+              <div className={`w-full h-[1.5px] ${light ? "bg-portfolio-line" : "bg-[#b9b9b9]"} rounded-full  transition-all duration-300 ${open ? "-rotate-45 -translate-y-[3.3px]" : "-rotate-0"}`}></div>
             </div>
         </button>
       </header>
@@ -202,7 +216,11 @@ export function MobileNavigation({
                 className={`w-max px-3 py-2.25 text-lg transition-colors ${light ? "text-[#626268] hover:text-[#171719]" : "text-portfolio-dim hover:text-portfolio-fg"}`}
                 href={`#${item.id}`}
                 key={item.id}
-                onClick={onToggleOpen}
+                onClick={(event) => {
+                  event.preventDefault();
+                  onToggleOpen();
+                  window.setTimeout(() => scrollToSection(item.id), 300);
+                }}
               >
                 {item.label}
               </a>

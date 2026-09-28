@@ -1,40 +1,81 @@
-import { ArrowUpRight, ImageSquare } from "@phosphor-icons/react";
+"use client";
+
+import { ArrowUpRight } from "@phosphor-icons/react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
+import Image from "next/image";
 import { usePortfolioTheme } from "./theme";
 import { TechnologyBadge } from "./shared/technology-badge";
 import type { Project } from "@/data/portfolio";
-import Image from 'next/image';
 
 type ProjectCardProps = {
   project: Project;
   index: number;
 };
 
-const projectToneClasses = {
-  mint: "bg-[linear-gradient(125deg,#d9e1d8,#e7e7dc_45%,#72aaa6)]",
-  blue: "bg-[linear-gradient(135deg,#514ff0,#7379fa_52%,#acb6ff)]",
-  sand: "bg-[linear-gradient(135deg,#d9c4aa,#eddbbb_47%,#738f86)]",
-};
-
-export function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project }: ProjectCardProps) {
   const light = usePortfolioTheme() === "light";
+  const imageLinkRef = useRef<HTMLAnchorElement>(null);
+  const feedbackTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [showKitchenMessage, setShowKitchenMessage] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
+    };
+  }, []);
+
+  function handleImageClick(event: MouseEvent<HTMLAnchorElement>) {
+    if (!project.isInDevelopment) return;
+
+    event.preventDefault();
+    imageLinkRef.current?.getAnimations().forEach((animation) => animation.cancel());
+    imageLinkRef.current?.animate(
+      [
+        { transform: "translateX(0) rotate(0deg)" },
+        { transform: "translateX(-4px) rotate(-1deg)" },
+        { transform: "translateX(4px) rotate(1deg)" },
+        { transform: "translateX(-3px) rotate(-0.7deg)" },
+        { transform: "translateX(3px) rotate(0.7deg)" },
+        { transform: "translateX(0) rotate(0deg)" },
+      ],
+      { duration: 430, easing: "ease-in-out" },
+    );
+    setShowKitchenMessage(true);
+    if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
+    feedbackTimeoutRef.current = setTimeout(() => {
+      setShowKitchenMessage(false);
+      feedbackTimeoutRef.current = null;
+    }, 1900);
+  }
 
   return (
     <article className="min-w-0">
       <a
-      //  className={`group relative p-2 isolate grid aspect-video place-items-center max-[760px]:place-items-start overflow-hidden rounded-[11px] hover:rounded-[20px] max-[760px]:aspect-4/2.5 ${projectToneClasses[project.tone]} transition-all duration-500 ease-[cubic-bezier(.2,.8,.2,1)]`}
-        className={`group relative flex w-fit shadow-md items-start max-[760px]:items-center overflow-hidden rounded-[11px] mb-2`}
+        ref={imageLinkRef}
+        className="group relative mb-2 flex w-fit items-start overflow-hidden rounded-[11px] shadow-md max-[760px]:items-center"
         href={project.link || "#"}
-        aria-label={`Replace with the ${project.name.toLowerCase()} project image`}
+        aria-label={project.isInDevelopment ? `${project.name}, project in development` : `${project.name} project`}
+        onClick={handleImageClick}
       >
-        <span className="rounded-xl aspect-video transition-all duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-[1.04] group-hover:bg-black/35">
+        <span className="aspect-video rounded-xl transition-all duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-[1.04] group-hover:bg-black/35">
           <Image
-            src={`/images/project-${project.id}.png`} 
+            src={`/images/project-${project.id}.png`}
             alt={`Project image for ${project.name}`}
             width={900}
             height={900}
             className="rounded-xl object-cover"
           />
         </span>
+        {project.isInDevelopment && (
+          <span
+            role="status"
+            aria-live="polite"
+            aria-hidden={!showKitchenMessage}
+            className={`pointer-events-none absolute inset-0 z-10 grid place-items-center rounded-xl bg-black/65 px-5 text-center text-md font-medium text-white transition-opacity duration-200 ${showKitchenMessage ? "opacity-100" : "opacity-0"}`}
+          >
+            Oops, this project is still in the kitchen
+          </span>
+        )}
       </a>
 
       <div className="pt-4.5 max-[760px]:pt-3.5">
@@ -53,9 +94,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <p className={`mb-0 mt-0.75 text-sm ${light ? "text-[#77777d]" : "text-portfolio-muted"}`}>
           {project.type}
         </p>
-        <p
-          className={`mb-0 mt-2 max-w-145 text-base leading-[1.45] ${light ? "text-[#56565b]" : "text-portfolio-dim"}`}
-        >
+        <p className={`mb-0 mt-2 max-w-145 text-base leading-[1.45] ${light ? "text-[#56565b]" : "text-portfolio-dim"}`}>
           {project.description}
         </p>
         <div className="mt-3.5 flex flex-wrap gap-2">

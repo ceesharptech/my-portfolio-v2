@@ -44,6 +44,7 @@ export type Project = {
   tone: ProjectTone;
   technologies: TechnologyName[];
   link?: string;
+  isInDevelopment?: boolean;
 };
 
 export const projects: Project[] = [
@@ -76,6 +77,7 @@ export const projects: Project[] = [
     tone: "sand",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "Sqlite"], 
     link: "#",
+    isInDevelopment: true,
   },
   {
     id: "bookr",

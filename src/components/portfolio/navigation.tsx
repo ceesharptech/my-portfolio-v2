@@ -1,5 +1,6 @@
 import {
   EnvelopeSimple,
+  GithubLogo,
   LinkedinLogo,
   List,
   MoonIcon,
@@ -100,6 +101,14 @@ function ContactLinks({ mobile = false }: { mobile?: boolean }) {
       >
         <LinkedinLogo className={iconTone} size={iconSize} aria-hidden="true" />
         LinkedIn
+      </a>      <a
+        className={`flex items-center gap-3 px-3 py-1 text-base transition-colors ${linkTone} ${muted}`}
+        href={socialLinks.github}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <GithubLogo className={iconTone} size={iconSize} aria-hidden="true" />
+        GitHub
       </a>
     </div>
   );

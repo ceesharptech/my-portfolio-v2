@@ -4,6 +4,7 @@ export const socialLinks = {
   email: `mailto:${contactEmail}`,
   x: "https://x.com/eniolamusu",
   linkedIn: "https://www.linkedin.com/in/eniolamusu",
+  github: "https://github.com/ceesharptech",
 };
 
 export const navigation = [
@@ -44,6 +45,7 @@ export type Project = {
   tone: ProjectTone;
   technologies: TechnologyName[];
   link?: string;
+  github?: string;
   isInDevelopment?: boolean;
 };
 

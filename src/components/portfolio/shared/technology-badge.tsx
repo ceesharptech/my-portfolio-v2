@@ -9,6 +9,14 @@ import {
     NodejsIcon,
     Groq,
     ExpoIcon,
+    FastapiIcon,
+    MysqlIcon,
+    SqliteIcon,
+    Html5,
+    Css3,
+    SupabaseIcon,
+    Javascript
+
 } from "@dev.icons/react";
 import { usePortfolioTheme } from "../theme";
 import type { TechnologyName } from "@/data/portfolio";
@@ -24,6 +32,13 @@ const technologyIcons = {
   "Node.js": NodejsIcon,
   Groq: Groq,
   Expo: ExpoIcon,
+  FastAPI: FastapiIcon,
+  MySql: MysqlIcon,
+  Sqlite: SqliteIcon,
+  HTML: Html5,
+  CSS: Css3,
+  Supabase: SupabaseIcon,
+  JavaScript: Javascript,
 };
 
 type TechnologyBadgeProps = {

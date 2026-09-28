@@ -66,7 +66,7 @@ export function SkillFolder({ folder, open, onToggle }: SkillFolderProps) {
             {folder.files.map((file, index) => (
               <span
                 key={file.name}
-                className={`absolute top-[8%] z-10 grid place-items-center rounded-[14px] transition-all duration-700 ease-[cubic-bezier(.2,.8,.2,1)] ${openedStackIconClasses} ${open ? "translate-y-[-125%] opacity-100" : "translate-y-0 opacity-100"}`}
+                className={`absolute top-[12%] z-10 grid place-items-center rounded-[14px] transition-all duration-700 ease-[cubic-bezier(.2,.8,.2,1)] ${openedStackIconClasses} ${open ? "translate-y-[-125%] opacity-100" : "translate-y-0 opacity-100"}`}
                 style={{
                   left: `${index * 18}%`,
                   transitionDelay: `${index * 45}ms`,
@@ -82,7 +82,7 @@ export function SkillFolder({ folder, open, onToggle }: SkillFolderProps) {
             {folder.files.map((file, index) => (
               <span
                 key={file.name}
-                className={`absolute top-[15%] z-10 flex h-[60%] w-[52%] max-[760px]:h-[70%] flex-col gap-2 rounded-xl bg-linear-to-br from-[#f2f2f1] to-white p-4 text-[#34343a] shadow-md transition-all duration-700 ease-[cubic-bezier(.2,.8,.2,1)] ${openedFileCardClasses[index]} ${open ? index === 0 ? "-translate-x-1 translate-y-[-58%] rotate-[-8deg]" : "translate-x-1 translate-y-[-58%] rotate-[8deg]" : "translate-y-[5%]"}`}
+                className={`absolute top-[15%] z-10 flex h-[48%] w-[52%] max-[760px]:h-[75%] flex-col gap-2 rounded-xl bg-linear-to-br from-[#f2f2f1] to-white p-4 text-[#34343a] shadow-md transition-all duration-700 ease-[cubic-bezier(.2,.8,.2,1)] ${openedFileCardClasses[index]} ${open ? index === 0 ? "-translate-x-1 translate-y-[-58%] rotate-[-8deg]" : "translate-x-1 translate-y-[-58%] rotate-[8deg]" : "translate-y-[5%]"}`}
                 style={{ transitionDelay: `${index * 70}ms` }}
               >
                 <strong className="text-[15px]">{file.name}</strong>

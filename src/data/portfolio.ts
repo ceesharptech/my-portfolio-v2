@@ -25,7 +25,14 @@ export type TechnologyName =
   | "Postgresql"
   | "Node.js"
   | "Groq"
-  | "Expo";
+  | "Expo"
+  | "FastAPI"
+  | "MySql"
+  | "Sqlite"
+  | "HTML"
+  | "CSS"
+  | "Supabase"
+  | "JavaScript";
 
 export type ProjectTone = "mint" | "blue" | "sand";
 
@@ -41,7 +48,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "onb360",
+    id: "onboard360",
     name: "Onboard360",
     type: "Full Stack development · Web app",
     description:
@@ -59,6 +66,36 @@ export const projects: Project[] = [
     tone: "sand",
     technologies: ["Expo", "TypeScript", "Tailwind CSS", "Node.js", "Postgresql", "Groq"],
     link: "https://chowbuddy.me",
+  },
+    {
+    id: "thesisflow",
+    name: "ThesisFlow",
+    type: "Independent project · Web app",
+    description:
+      "A platform for final year students to manage their thesis projects, collaborate with supervisors, and track progress.",
+    tone: "sand",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "Sqlite"], 
+    link: "#",
+  },
+  {
+    id: "bookr",
+    name: "Bookr",
+    type: "Independent project · Web app",
+    description:
+      "A platform for student to book rooms in their school hostels, manage bookings, and track availability.",
+    tone: "sand",
+    technologies: ["React", "Tailwind CSS", "Supabase"], 
+    link: "https://csbookr.vercel.app",
+  },
+    {
+    id: "caml",
+    name: "Caml",
+    type: "Independent project · Web app",
+    description:
+      "Landing page for a platform that allows Nigerian writers to upload their stories, and readers to discover and read them.",
+    tone: "sand",
+    technologies: ["HTML", "CSS", "JavaScript"], 
+    link: "https://csbookr.vercel.app",
   },
 ];
 

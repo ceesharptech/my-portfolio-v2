@@ -26,7 +26,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         href={project.link || "#"}
         aria-label={`Replace with the ${project.name.toLowerCase()} project image`}
       >
-        <span className="rounded-xl transition-all duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-[1.04] group-hover:bg-black/35">
+        <span className="rounded-xl aspect-video transition-all duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-[1.04] group-hover:bg-black/35">
           <Image
             src={`/images/project-${project.id}.png`} 
             alt={`Project image for ${project.name}`}
